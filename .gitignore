@@ -70,3 +70,11 @@ venv.bak/
 # OS Generated
 .DS_Store
 Thumbs.db
+
+# Datasets and large archive files
+Dataset/
+*.zip
+*.tar.gz
+*.rar
+*.7z
+

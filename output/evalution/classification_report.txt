@@ -1,0 +1,10 @@
+                 precision    recall  f1-score   support
+
+ Black_Sigatoka       0.96      0.99      0.98       682
+  Fusarium_Wilt       0.99      0.96      0.98       966
+        Healthy       0.99      1.00      0.99       698
+Not_Banana_Leaf       1.00      1.00      1.00      1007
+
+       accuracy                           0.99      3353
+      macro avg       0.99      0.99      0.99      3353
+   weighted avg       0.99      0.99      0.99      3353
