@@ -76,5 +76,5 @@ Dataset/
 *.zip
 *.tar.gz
 *.rar
-*.7z
-
+# Project reports / notes
+CHANGES_REPORT.txt
