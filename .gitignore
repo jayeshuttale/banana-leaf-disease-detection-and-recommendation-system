@@ -78,3 +78,5 @@ Dataset/
 *.rar
 # Project reports / notes
 CHANGES_REPORT.txt
+changes+report.txt
+*changes*report*.txt
