@@ -15,6 +15,16 @@ An AI-powered agricultural tool that detects banana leaf diseases and provides t
 - **Actionable Recommendations**: Detailed symptoms, disease background, cultural/chemical management techniques, and preventive measures.
 - **User-Friendly Web Interface**: Built with Streamlit for quick and responsive diagnosis.
 - **RESTful API**: Flask backend providing modular endpoints for inference and integration.
+- **High Diagnostic Accuracy**: Fine-tuned MobileNetV2 architecture achieving **99% accuracy** across 3,350+ validation images.
+
+---
+
+## 📊 Project Milestones & Status (85% Complete)
+
+- ✅ **Unified 4-Class Classification**: Integrated Out-of-Distribution (`Not_Banana_Leaf`) rejection filter.
+- ✅ **Backend Integration**: Flask REST API server (`/predict`) serving model inference and recommendation payloads.
+- ✅ **Frontend Dashboard**: Responsive Streamlit web application connected asynchronously to backend services.
+- ⏳ **Upcoming (Reporting 9 & 10)**: Interactive farm analytics dashboard and final project defense documentation.
 
 ---
 
