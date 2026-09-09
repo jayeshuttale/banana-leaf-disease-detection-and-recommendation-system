@@ -1,5 +1,8 @@
+import os
 import streamlit as st
 import requests
+
+BACKEND_URL = os.getenv("BACKEND_URL", "http://127.0.0.1:5000/predict")
 
 # Set page config to wide mode for responsive split layout
 st.set_page_config(
@@ -210,14 +213,14 @@ with col_right:
         with st.spinner("Analyzing leaf with MobileNetV2..."):
             try:
                 files = {'image': uploaded_file.getvalue()}
-                response = requests.post('http://127.0.0.1:5000/predict', files=files, timeout=30)
+                response = requests.post(BACKEND_URL, files=files, timeout=30)
                 
                 if response.status_code == 200:
                     st.session_state["last_result"] = response.json()
                 else:
                     st.session_state["last_result"] = {"error": "Server error processing prediction."}
             except requests.exceptions.ConnectionError:
-                st.session_state["last_result"] = {"error": "Cannot connect to Flask backend (port 5000). Please ensure backend is running."}
+                st.session_state["last_result"] = {"error": f"Cannot connect to Flask backend at {BACKEND_URL}. Please ensure backend is running."}
             except Exception as e:
                 st.session_state["last_result"] = {"error": f"Request failed: {str(e)}"}
 

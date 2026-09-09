@@ -49,6 +49,8 @@ def load_model():
             
     raise FileNotFoundError("Could not find model file in backend/models/")
 
+CONFIDENCE_THRESHOLD = 0.6  # Default confidence threshold set to 0.6
+
 def predict(model, file):
     img = Image.open(file).convert('RGB').resize((224, 224))
     # Pass raw [0, 255] float32 image because the Keras model already contains the preprocess_input layer
@@ -60,7 +62,7 @@ def predict(model, file):
     predicted_class = CLASS_NAMES[idx]
     confidence = float(preds[idx])
 
-    if predicted_class == 'Not_Banana_Leaf':
+    if predicted_class == 'Not_Banana_Leaf' or confidence < CONFIDENCE_THRESHOLD:
         return {
             'is_banana_leaf': False,
             'confidence': round(confidence * 100, 2),
@@ -72,3 +74,4 @@ def predict(model, file):
         'class': predicted_class,
         'confidence': round(confidence * 100, 2)
     }
+

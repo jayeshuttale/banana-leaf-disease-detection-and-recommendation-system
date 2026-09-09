@@ -1,0 +1,17 @@
+.git/
+.gitignore
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+Dataset/final_dataset.zip
+Dataset/*.zip
+notebooks/
+output/
+Screenshot/
+.pytest_cache/
+.DS_Store
+*.log
+*.md
