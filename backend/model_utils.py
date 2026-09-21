@@ -4,6 +4,13 @@ from tensorflow.keras import layers
 import numpy as np
 from PIL import Image
 
+# Patch Keras Layer init to strip quantization_config=None for Keras 3 compatibility
+_orig_init = layers.Layer.__init__
+def _patched_init(self, *args, **kwargs):
+    kwargs.pop('quantization_config', None)
+    _orig_init(self, *args, **kwargs)
+layers.Layer.__init__ = _patched_init
+
 CLASS_NAMES = ['Black_Sigatoka', 'Fusarium_Wilt', 'Healthy', 'Not_Banana_Leaf']  # must match training order exactly
 
 class RandomGaussianBlur(layers.Layer):
@@ -22,6 +29,9 @@ class RandomGaussianBlur(layers.Layer):
             kernel = tf.tile(kernel, [1, 1, 3, 1])
             return tf.nn.depthwise_conv2d(images, kernel, strides=[1, 1, 1, 1], padding='SAME')
         return tf.cond(apply_blur, blur, lambda: images)
+
+    def compute_output_shape(self, input_shape):
+        return input_shape
 
     def get_config(self):
         config = super().get_config()
@@ -57,7 +67,7 @@ def predict(model, file):
     arr = np.array(img, dtype=np.float32)
     arr = np.expand_dims(arr, axis=0)
 
-    preds = model.predict(arr, verbose=0)[0]
+    preds = model(arr, training=False).numpy()[0]
     idx = int(np.argmax(preds))
     predicted_class = CLASS_NAMES[idx]
     confidence = float(preds[idx])

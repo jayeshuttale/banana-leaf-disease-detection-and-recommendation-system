@@ -20,13 +20,13 @@ An AI-powered agricultural tool that detects banana leaf diseases and provides t
 
 ---
 
-## 📊 Project Milestones & Status (90% Complete)
+## 📊 Project Milestones & Status
 
 - ✅ **Unified 4-Class Classification**: Integrated Out-of-Distribution (`Not_Banana_Leaf`) rejection filter.
 - ✅ **Backend Integration**: Flask REST API server (`/predict` & `/health`) serving model inference and recommendation payloads.
 - ✅ **Frontend Dashboard**: Responsive 2-column Streamlit web application connected asynchronously to backend services.
 - ✅ **Docker Containerization**: Full Docker Compose setup for microservices architecture.
-- ⏳ **Upcoming (Reporting 10)**: Interactive farm analytics dashboard and final project defense documentation.
+- ✅ **Refactored Output & Testing Pipeline**: Organized evaluation metrics (`output/evaluation/`), training plots (`output/plots/`), and real-world test results (`output/testing/`).
 
 ---
 
@@ -50,8 +50,13 @@ Banana Leaf Disease Project/
 │   ├── Dockerfile               # Frontend container configuration
 │   └── .dockerignore            # Frontend ignore rules
 │
-├── notebooks/                   # Training & experimentation notebooks
-├── output/                      # Evaluation plots & confusion matrix metrics
+├── notebooks/                   # Training & evaluation notebooks (Colab & PDF exports)
+├── output/                      # Metrics, plots, and real-world testing results
+│   ├── evaluation/              # Confusion matrix & classification report metrics
+│   ├── plots/                   # Loss, accuracy, and class imbalance training plots
+│   └── testing/                 # Real-world image prediction test outputs (b1, b2, f1, f2, h1, h2)
+│
+├── Screenshot/                  # Comprehensive project evidence & UI verification screenshots
 ├── docker-compose.yml           # Multi-container Docker orchestration
 ├── .dockerignore                # Root Docker ignore rules
 ├── requirements.txt             # Project-wide dependencies
@@ -119,7 +124,7 @@ pip install -r requirements.txt
 ```
 
 ### 3. Model Weights
-Ensure trained model file (e.g. `unified_finetune_latest.keras` or `unified_best_model.keras`) is located in the `backend/models/` directory.
+Ensure trained model file (e.g. `unified_finetune_latest.keras` or `final_best_model.keras`) is located in the `backend/models/` directory.
 
 ### 4. Start the Application
 
